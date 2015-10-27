@@ -9,6 +9,55 @@ In this package I'm creating a base Extension class that allows you to return an
 
 ## To create an Extension:
 
+Here we are defining a `UserConnection` extension, it allows to get the user information it allows you to call in your component, `this.props['UserConnection'].firstName` and `this.props['UserConnection'].lastName`.
+If you want to refresh the user simply call `this.props['UserConnection'].refresh()`.
+You can pass `accountUrl` and `updateAccountUrl` as params of the Extension.
+
+```javascript
+import * from 'react-component-extension';
+
+const UserConnection = {
+  // This is the public name of the Extension
+  extensionName: 'UserConnection',
+  exports: {
+    // Variables accessibles from the Extension
+    variables: ['firstName', 'lastName'],
+    // Methods callable on the Extension
+    methods: ['refresh'],
+  },
+  // Required params to use the extension
+  // should be an object key: 'description'
+  requiredParams: {
+    accountUrl: 'url to fetch the user',
+  },
+  optionalParams: {
+    updateAccountUrl: 'url to update the user',
+  },
+}
+
+export default Extension.create(UserConnection);
+```
+
+## To use the Extension:
+
+```javascript
+class AccountPage extends React.Component {
+  render() {
+    <Div>
+      hello {this.props['UserConnection'].firstName}
+      click <Button onClick={this.props['UserConnection'].refresh}>here</Button> to refresh
+    </Div>
+  }
+}
+
+export default UserConnection(AccountPage, {
+  accountUrl: 'api/account'
+});
+```
+
+
+## Other Examples
+
 ```javascript
 const AddSpinningLoader = {
   extensionName: 'AddSpinningLoader',
@@ -35,18 +84,16 @@ const AddSpinningLoader = {
     let spinningLoader = this.state.loading ? <SpinningLoader/> : null;
 
     return (
-      <div>
+      <Div>
         {spinningLoarder}
         {this.renderComponent()}
-      </div>
+      </Div>
     )
   }  
 };
 
 export default Extension.create(AddSpinningLoader);
 ```
-
-## To use the Extension:
 
 ```javascript
 @AddSpinningLoader
