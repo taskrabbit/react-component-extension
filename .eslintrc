@@ -1,0 +1,55 @@
+{
+  "rules": {
+    "indent": [
+        2,
+        2,
+        {"SwitchCase": 1}
+     ],
+     "quotes": [
+         2,
+         "single"
+     ],
+     "eqeqeq": [2, "allow-null"],
+     "comma-dangle": [
+      2,
+      "always-multiline"
+     ],
+     "linebreak-style": [
+         2,
+         "unix"
+     ],
+     "semi": [
+         2,
+         "always"
+     ],
+     "no-unused-vars": [
+       2,
+       {
+         "vars" : "all",
+         "varsIgnorePattern" : "React"
+       }
+     ],
+     "no-cond-assign" : [
+       0
+     ]
+ },
+ "env": {
+     "es6": true,
+     "browser": true,
+     "amd" : true
+ },
+ "globals": {
+   "module": true,
+   "describe": true
+ },
+ "extends": "eslint:recommended",
+ "ecmaFeatures": {
+     "jsx": true,
+     "modules" : true,
+     "experimentalObjectRestSpread": true
+ },
+ "parser" : "babel-eslint",
+ "plugins": [
+     "react"
+ ]
+}
