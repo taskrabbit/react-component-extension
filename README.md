@@ -84,10 +84,10 @@ const AddSpinningLoader = {
     let spinningLoader = this.state.loading ? <SpinningLoader/> : null;
 
     return (
-      <Div>
+      <div>
         {spinningLoarder}
         {this.renderComponent()}
-      </Div>
+      </div>
     )
   }  
 };
