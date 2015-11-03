@@ -19,55 +19,49 @@ const create = ({extensionName, requiredParams = {}, exports = {}, optionalParam
       );
     }
 
-    class ComponentContainer extends React.Component {
-      displayName: containerName
+    const ComponentContainer = React.createClass({
+      mixins: [BaseLib],
 
-      constructor(props) {
-        super(props);
+      displayName: containerName,
 
-        this.state = {};
+      params: params,
 
-        this.getExtensionProps    = this.getExtensionProps.bind(this);
-        this.getExportedVariables = this.getExportedVariables.bind(this);
-        this.getExportedMethods   = this.getExportedMethods.bind(this);
-        this.getOriginalComponent = this.getOriginalComponent.bind(this);
-        this.renderComponent      = this.renderComponent.bind(this);
-
-        Object.assign(this, BaseLib);
-      }
+      getInitialState() {
+        return {};
+      },
 
       getOriginalComponent() {
-        if (this.refs._ExtensionComponent.originalComponent) {
-          return this.refs._ExtensionComponent.originalComponent();
+        if (this.refs._ExtensionComponent.getOriginalComponent) {
+          return this.refs._ExtensionComponent.getOriginalComponent();
         }
         return this.refs._ExtensionComponent;
-      }
+      },
 
       bindOriginalComponent(func, ...args) {
         return func.bind(this.getOriginalComponent(), ...args);
-      }
+      },
 
       // Implement getExtensionProps if you want to add more behavior passed to the Component
       // it will allow accessing in the Extended Component with this.props[ExtensionName]
       getExtensionProps() {
         return {
-          [extensionName]: Object.assign(this.getExportedVariables(), this.getExportedMethods()),
+          [extensionName]: Object.assign({variables: this.getExportedVariables()}, this.getExportedMethods()),
         };
-      }
+      },
 
       getExportedVariables() {
         var _variables = {};
         (exports.variables || []).forEach((variableName) => _variables[variableName] = this.state[variableName]);
 
         return _variables;
-      }
+      },
 
       getExportedMethods() {
         var _methods = {};
         (exports.methods || []).forEach((methodName) => _methods[methodName] = this[methodName]);
 
         return _methods;
-      }
+      },
 
       renderComponent() {
         return (
@@ -77,7 +71,7 @@ const create = ({extensionName, requiredParams = {}, exports = {}, optionalParam
             ref="_ExtensionComponent"
           />
         );
-      }
+      },
 
       render() {
         if (this.renderExtension) {
@@ -85,9 +79,9 @@ const create = ({extensionName, requiredParams = {}, exports = {}, optionalParam
         }
 
         return this.renderComponent();
-      }
+      },
 
-    }
+    });
 
     return ComponentContainer;
   };
