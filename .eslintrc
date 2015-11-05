@@ -40,7 +40,9 @@
  },
  "globals": {
    "module": true,
-   "describe": true
+   "describe": true,
+   "beforeEach": true,
+   "it": true
  },
  "extends": "eslint:recommended",
  "ecmaFeatures": {
