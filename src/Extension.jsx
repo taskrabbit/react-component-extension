@@ -89,4 +89,4 @@ const create = ({extensionName, requiredParams = {}, exports = {}, optionalParam
   return Extension;
 };
 
-module.exports = {create};
+export default {create};
