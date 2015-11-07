@@ -1,11 +1,8 @@
 Since [mixins are dead](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.jqp1e0of3), higher order components are the way to go.
 
-I really love the approach, its much more modular and you avoid conflicting names.
+But when you use multiple higher order component for a Component it can be confusing, you have to think about where the behavior comes from.
 
-But I run into gotchas, when you have a lot of behavior that you want to share it can be confusing, you might not now where the behavior comes from.
-This is why I used namespace in the higher order components and also defining what are the methods/variables that will be provided by the extension.
-
-In this package I'm creating a base Extension class that allows you to return an extended object.
+An Extension is namespaced and also explicit about what are the methods/variables that are be provided to the Component.
 
 ## To create an Extension:
 
@@ -143,8 +140,7 @@ export default Form;
 
 ## Updating from a React Mixin to an Extension
 
-It is pretty straightforward to make a current Mixin an Extension, for example
-here is [react-timer-mixin](https://github.com/reactjs/react-timer-mixin) as an [Extension](./examples/extensions/TimerExtension.js)
+It is pretty straightforward to make a React Mixin an Extension, for example here is [react-timer-mixin](https://github.com/reactjs/react-timer-mixin) as an [Extension](./examples/extensions/TimerExtension.js)
 
 ### TODO
 
