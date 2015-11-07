@@ -6,7 +6,7 @@ An Extension is namespaced and also explicit about what are the methods/variable
 
 ## To create an Extension:
 
-Here we are defining a `UserConnection` extension, it allows to get the user information it allows you to call in your component, `this.props['UserConnection'].firstName` and `this.props['UserConnection'].lastName`.
+Here we are defining a `UserConnection` extension, it allows to get the user information it allows you to call in your component, `this.props['UserConnection'].variables.firstName` and `this.props['UserConnection'].variables.lastName`.
 If you want to refresh the user simply call `this.props['UserConnection'].refresh()`.
 You can pass `accountUrl` and `updateAccountUrl` as params of the Extension.
 
@@ -38,12 +38,12 @@ export default Extension.create(UserConnection);
 ## To use the Extension:
 
 ```javascript
-class AccountPage extends React.Component {
+class Account extends React.Component {
   render() {
-    <Div>
-      hello {this.props['UserConnection'].firstName}
-      click <Button onClick={this.props['UserConnection'].refresh}>here</Button> to refresh
-    </Div>
+    <div>
+      hello {this.props['UserConnection'].variables.firstName}
+      click <button onClick={this.props['UserConnection'].refresh}>here</button> to refresh
+    </div>
   }
 }
 
@@ -145,6 +145,6 @@ It is pretty straightforward to make a React Mixin an Extension, for example her
 ### TODO
 
 * Add tests
-* Really do the example code :)
+* Really do the example code
 * Add examples
 * Add sample page
