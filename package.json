@@ -2,9 +2,9 @@
   "name": "react-component-extension",
   "version": "1.0.0",
   "description": "Easy use of Higher Order Component",
-  "main": "build/extension.js",
+  "main": "lib/Extension.js",
   "scripts": {
-    "build": "babel --stage 0 --optional runtime src --out-dir build",
+    "build": "babel --stage 0 --optional runtime src --out-dir lib",
     "prepublish": "npm run build",
     "test": "mocha tests --compilers js:babel/register"
   },
@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "invariant": "^2.1.1",
-    "react": "^0.14.0"
+    "react": "^0.14.0",
+    "babel-runtime": "^5.4.3"
   },
   "homepage": "https://github.com/taskrabbit/react-component-extension",
   "devDependencies": {
