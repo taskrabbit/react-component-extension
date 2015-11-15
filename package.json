@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jrichardlai/react-component-extension.git"
+    "url": "git+https://github.com/taskrabbit/react-component-extension.git"
   },
   "keywords": [
     "react",
@@ -21,13 +21,13 @@
   "author": "jrichardlai",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jrichardlai/react-component-extension/issues"
+    "url": "https://github.com/taskrabbit/react-component-extension/issues"
   },
   "dependencies": {
     "invariant": "^2.1.1",
     "react": "^0.14.0"
   },
-  "homepage": "https://github.com/jrichardlai/react-component-extension",
+  "homepage": "https://github.com/taskrabbit/react-component-extension",
   "devDependencies": {
     "babel": "^5.8.29",
     "babel-eslint": "^4.1.3",
