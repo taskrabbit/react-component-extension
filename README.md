@@ -11,7 +11,7 @@ If you want to refresh the user simply call `this.props['UserConnection'].refres
 You can pass `accountUrl` and `updateAccountUrl` as params of the Extension.
 
 ```javascript
-import * from 'react-component-extension';
+import * as Extension from 'react-component-extension';
 
 const UserConnection = {
   // This is the public name of the Extension
