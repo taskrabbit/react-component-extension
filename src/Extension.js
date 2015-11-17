@@ -1,13 +1,8 @@
 import React     from 'react';
 import invariant from 'invariant';
 
-const create = ({extensionName, requiredParams = {}, exports = {}, optionalParams, ...BaseLib}) => {
-  invariant(
-    extensionName,
-    'extensionName required when defining an extension'
-  );
-
-  const Extension = (Component, params = {}) => {
+const makeDecorator = ({params, extensionName, requiredParams, BaseLib, exports}) => {
+  return (Component) => {
 
     const componentName = Component.displayName || Component.name;
     const containerName = `${extensionName} (${componentName})`;
@@ -84,6 +79,23 @@ const create = ({extensionName, requiredParams = {}, exports = {}, optionalParam
     });
 
     return ComponentContainer;
+  };
+};
+
+const create = ({extensionName, requiredParams = {}, exports = {}, optionalParams, ...BaseLib}) => {
+  invariant(
+    extensionName,
+    'extensionName required when defining an extension'
+  );
+
+  const decoratorParams = {extensionName, requiredParams, BaseLib, exports};
+
+  const Extension = (...args) => {
+    if (typeof(args[0]) === 'function') {
+      return makeDecorator({params: {}, ...decoratorParams})(args[0]);
+    } else {
+      return makeDecorator({params: args[0], ...decoratorParams});
+    }
   };
 
   return Extension;

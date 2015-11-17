@@ -115,6 +115,80 @@ describe('Extension', () => {
 
     });
 
+    describe('with decorators', () => {
+
+      describe('without params', () => {
+        let TestComponent;
+        let component;
+        let originalComponent;
+
+        beforeEach(() => {
+          @LoaderExtension
+          class TestComponent extends React.Component {
+            constructor(props) {
+              super(props);
+
+              this.state = { checkValue: true };
+            }
+
+            render() {
+              return (
+                <div>
+                  ComponentLevel
+                </div>
+              );
+            }
+          }
+          component = TestUtils.renderIntoDocument(<TestComponent/>);
+          originalComponent = component.getOriginalComponent();
+        });
+
+        it('sets the name properly', () => {
+          expect(component.constructor.displayName).to.eql('LoaderExtension (TestComponent)');
+        });
+
+        it('returns the originalComponent', () => {
+          expect(originalComponent.state.checkValue).to.eql(true);
+        });
+      });
+
+      describe('with params', () => {
+        let TestComponent;
+        let component;
+        let originalComponent;
+
+        beforeEach(() => {
+          @LoaderExtension({someParams: 'foo'})
+          class TestComponent extends React.Component {
+            constructor(props) {
+              super(props);
+
+              this.state = { checkValue: true };
+            }
+
+            render() {
+              return (
+                <div>
+                  ComponentLevel
+                </div>
+              );
+            }
+          }
+          component = TestUtils.renderIntoDocument(<TestComponent/>);
+          originalComponent = component.getOriginalComponent();
+        });
+
+        it('sets the name properly', () => {
+          expect(component.constructor.displayName).to.eql('LoaderExtension (TestComponent)');
+        });
+
+        it('returns the originalComponent', () => {
+          expect(originalComponent.state.checkValue).to.eql(true);
+        });
+      });
+
+    });
+
     describe('.bindOriginalComponent', () => {
       // TODO
     });
