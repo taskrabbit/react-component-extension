@@ -138,6 +138,10 @@ Form = ValidationErrorBar(Form, {
 export default Form;
 ```
 
+## Install
+
+`npm install --save react-component-extension`
+
 ## Updating from a React Mixin to an Extension
 
 It is pretty straightforward to make a React Mixin an Extension, for example here is [react-timer-mixin](https://github.com/reactjs/react-timer-mixin) as an [Extension](./examples/extensions/TimerExtension.js)
