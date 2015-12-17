@@ -151,4 +151,3 @@ It is pretty straightforward to make a React Mixin an Extension, for example her
 * Add tests
 * Really do the example code
 * Add examples
-* Add sample page
